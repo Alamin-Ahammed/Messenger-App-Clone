@@ -61,8 +61,8 @@ export default function Profile({ data: { name, text, id }, newStyles = {} }) {
         <img style={styles.profileImage} src={messengerLogo} alt="Image" />
       </div>
       <div>
-        <h1 style={styles.name}>{selecteProfilesName || name}</h1>
-        <p style={styles.message}>{selecteProfilestext || text}</p>
+        <h1 style={styles.name}>{name}</h1>
+        <p style={styles.message}>{text}</p>
       </div>
     </div>
   );
