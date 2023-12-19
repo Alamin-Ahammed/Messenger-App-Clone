@@ -10,6 +10,7 @@ import { MdGifBox } from "react-icons/md";
 import { FaSmile } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
 import Message from "./Message";
+import { useProfileContext } from "../context/SelectedProfileContext";
 
 const styles = {
   RightSideBar: {
@@ -152,11 +153,8 @@ const messages = [
 ];
 
 export default function RightSideBar() {
-  const data = {
-    id: '0',
-    name: "Alamin Ahammed",
-    text: "Active Now",
-  };
+
+  const { selectedProfile } = useProfileContext()
 
   const handleSubmitMessage = (e) => {
     e.preventDefault();
@@ -167,7 +165,7 @@ export default function RightSideBar() {
   return (
     <div style={styles.RightSideBar}>
       <div style={styles.nav}>
-        <Profile data={data} newStyles={styles} />
+        <Profile data={selectedProfile} newStyles={styles} />
         <div style={styles.menu}>
           <div className="menuHover" style={styles.menuIcons}>
             <IoIosCall />

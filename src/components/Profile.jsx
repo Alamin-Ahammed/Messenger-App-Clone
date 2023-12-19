@@ -39,21 +39,9 @@ const styles = {
 
 export default function Profile({ data: { name, text, id }, newStyles = {} }) {
   const { profile, container } = newStyles;
-  const { selectedProfile, setSelectedProfile } = useProfileContext();
-  const {
-    name: selecteProfilesName,
-    text: selecteProfilestext,
-    id: selecteProfilesId,
-  } = selectedProfile;
-  console.log(selecteProfilesName, selecteProfilestext,selecteProfilesId);
-
-  const handleSelectFirendToMessage = (ID) => {
-    console.log("first", ID);
-  };
 
   return (
     <div
-      onClick={() => handleSelectFirendToMessage(id)}
       style={{ ...styles.container, ...container }}
       className="hoverprofile"
     >

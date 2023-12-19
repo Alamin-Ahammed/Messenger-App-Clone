@@ -2,6 +2,7 @@ import React from "react";
 import Profile from "./Profile";
 import { IoSearch } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
+import { useProfileContext } from "../context/SelectedProfileContext";
 
 const styles = {
   container: {
@@ -41,15 +42,15 @@ const styles = {
     height: "80vh",
   },
   edit: {
-    display: 'flex',
+    display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: '10px',
+    padding: "10px",
     // backgroundColor: 'rgb(240,240,240)',
-    borderRadius: '50%',
-    cursor: 'pointer',
-    transition: 'all 0.3s',
-  }
+    borderRadius: "50%",
+    cursor: "pointer",
+    transition: "all 0.3s",
+  },
 };
 
 const profiles = [
@@ -76,6 +77,13 @@ const profiles = [
 ];
 
 export default function LeftSideBar({ HeadingText }) {
+  const { selectedProfile, setSelectedProfile } = useProfileContext();
+
+  const handleSelectProfileForMessaging = (data) => {
+    console.log(data)
+    setSelectedProfile({...data,text: 'Active Now'})
+  }
+
   return (
     <div style={styles.container}>
       <div style={styles.leftSideHeading}>
@@ -93,9 +101,11 @@ export default function LeftSideBar({ HeadingText }) {
         />
       </div>
       <div style={styles.profileParent}>
-        {profiles.length === 0 ? <h6>You have no friends. Search for some friends to talk with.</h6> :profiles.map((data) => (
-          <Profile key={data.id} data={data} />
-        ))}
+        {profiles.length === 0 ? (
+          <h6>You have no friends. Search for some friends to talk with.</h6>
+        ) : (
+          profiles.map((data) => <div onClick={()=>handleSelectProfileForMessaging(data)} key={data.id} ><Profile  data={data} /></div>)
+        )}
       </div>
     </div>
   );
